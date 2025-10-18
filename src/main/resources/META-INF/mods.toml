@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="arcaneascent"
+version="0.1.0"
+displayName="Arcane Ascent"
+authors="ArcaneAscent Team"
+description='''
+A minimal skeleton mod where the player becomes a Level 1 Wizard by interacting with a wizard in a tower and receiving a spell scroll.
+'''
+
+[[dependencies.arcaneascent]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.arcaneascent]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
