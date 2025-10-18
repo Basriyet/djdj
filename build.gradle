@@ -1,0 +1,80 @@
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '6.0.+'
+}
+
+group = 'com.arcaneascent'
+version = '0.1.0'
+archivesBaseName = 'arcaneascent'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    runs {
+        client {
+            workingDirectory file('run')
+            property 'forge.logging.console.level', 'info'
+            mods {
+                arcaneascent {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory file('run')
+            property 'forge.logging.console.level', 'info'
+            mods {
+                arcaneascent {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory file('run')
+            args '--mod', 'arcaneascent', '--all', '--output', file('src/generated/resources/')
+            mods {
+                arcaneascent {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net' }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    // keep resources as-is for now
+}
+
+jar {
+    manifest {
+        attributes(
+            'Specification-Title': 'arcaneascent',
+            'Specification-Vendor': 'ArcaneAscent',
+            'Specification-Version': '1',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'ArcaneAscent',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        )
+    }
+}
